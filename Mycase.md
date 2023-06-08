@@ -2,7 +2,9 @@
 
 
 I've been contacted by one guy who said... "my pc it's really slow!" .. i would say it's classic for our subject.
-So he gave me a `HP chromebook 14a na0019cl`.
+So he gave me a 
+`HP chromebook 14a na0019cl`.
+
 Purpouse of the challenge was to boot a native lite distro of Linux.
 
 
