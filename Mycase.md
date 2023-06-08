@@ -1,4 +1,4 @@
-# MY CASE
+## MY CASE
 
 
 I've been contacted by one guy who said... "my pc it's really slow!" .. i would say it's classic for our subject.
@@ -43,10 +43,10 @@ Developer Mode
 -    Verified Boot (signature checking) disabled by default, but can be re-enabled
 -    Enabled via [CTRL+D] on the Recovery Mode boot screen
 -    Boots to the developer mode boot screen (white screen with 'OS verification is off' text), from which the user can select via keystroke where to boot:
--       ChromeOS (in developer mode) on internal storage ( [CTRL+D] )
--       ChromeOS/ChromiumOS on USB ( [CTRL+U] )
--       Legacy Boot Mode ( [CTRL+L] )
--    Boot screen displays the ChromeOS device/board name in the hardware ID string (eg, PANTHER F5U-C92, which is useful to know in the context of device recovery, firmware support, or in determining what steps are required to install a given alternate OS on the device.
+       ChromeOS (in developer mode) on internal storage ( [CTRL+D] )
+       ChromeOS/ChromiumOS on USB ( [CTRL+U] )
+       Legacy Boot Mode ( [CTRL+L] )
+    Boot screen displays the ChromeOS device/board name in the hardware ID string (eg, PANTHER F5U-C92, which is useful to know in the context of device recovery, firmware support, or in determining what steps are required to install a given alternate OS on the device.
 
 Legacy Boot Mode
 
@@ -56,4 +56,45 @@ Legacy Boot Mode
 -    Not all ChromeOS devices are capable out of the box, most require a RW_LEGACY firmware update first
     Boots to the (black) SeaBIOS splash screen; if multiple boot devices are available, a prompt to show the boot menu will be displayed.
 
+
+
+
+
+## What is Write Protection?
+
+
+There's another problem which is WP . there's 2 possible version of this protector screw and CR50
+with this [link]("https://mrchromebox.tech/#devices") where you can find your particular machine and what hardware protector you have!
+
+
+So in mycase i had CR50 and disabling the WP means you have to unplug battery from motherboard
+
+
+Now with only AC power connector boot the Chromebook with `ESC + F4 + POWER_ON` and bootloader says "hey...you are in recovery_mode" and automatically disable the check og your disk ...
+Here you have to input `CTRL + D` means you want to enable Developer mode .. **this erase all your data**.
+
+When reboot .. you can now press `CTRL + ALT + F3` and login as `chronos`
+
+
+now you can execute (this)[https://github.com/MrChromebox/scripts/blob/master/firmware-util.sh] script 
+
+```
+cd
+curl -LO https://github.com/MrChromebox/scripts/blob/master/firmware-util.sh && sudo bash firmware-util.sh
+```
+
+and now you can able to modify the coreboot of your chromebook! note that in this script you can see if the WP! is enabled or not ..
+It's really important check your supported version of uefi firmware if it's not supported you can't do anything! 
+
+if it's RW_LEGACY means you can boot efi mode .. but in my case i would like to boot an UEFI install mode with my personal coreboot !
+
+In the script i choose the uefi mode couse was perfectly supported (**it won't be able to boot chromeOS anymore**).
+
+
+Now it's time make a bootable usb with a linux distro, choose what you prefer
+
+With first boot you have to press `ESC` when you see the rabbit image which means you are in coreboot ! 
+and boom! 
+
+We natively boot a Linux operating system!
 
